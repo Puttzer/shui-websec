@@ -1,9 +1,9 @@
 <template>
-  <div class="feed"></div>
+  <div class="flow"></div>
 </template>
 
 <script>
 export default {
-  name: "Feed",
+  name: "Flow",
 };
 </script>
