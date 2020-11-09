@@ -30,7 +30,11 @@ export default {
       );
 
       if (response.data.token) {
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
         sessionStorage.setItem("auth", response.data.token);
+        this.$router.push({ name: "Flow" });
       }
     },
   },

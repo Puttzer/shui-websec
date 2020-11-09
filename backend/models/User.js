@@ -42,9 +42,7 @@ module.exports = {
 
 				return {
 					token,
-					user: {
-						username: user.username
-					}
+					username: user.username
 				}
 			} else {
 				// Password check shows incorrections, return false
