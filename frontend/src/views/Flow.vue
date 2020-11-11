@@ -1,7 +1,5 @@
 <template>
   <div class="flow">
-    <!-- {{ userID }} -->
-
     <div class="list">
       <ul>
         <li class="list-item" v-for="stream in streams" :key="stream._id">

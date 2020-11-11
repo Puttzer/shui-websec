@@ -1,12 +1,12 @@
 <template>
   <div>
-    <img class="s-logo" alt="Vue logo" src="../assets/redlog.png" />
     <img class="shui-logo" alt="Vue logo" src="../assets/SHUILogo.png" />
     <img class="waterbottom" alt="Vue logo" src="../assets/waterbottom.png" />
     <form method="get" @submit.prevent="submit">
       <input type="text" placeholder="Användarnamn" v-model="cert.username" />
       <input type="password" placeholder="Lösenord" v-model="cert.password" />
       <button>Logga in</button>
+      <router-link to="/register">Logga in</router-link>
     </form>
   </div>
 </template>
@@ -42,13 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.s-logo {
-  width: 42px;
-  height: 60px;
-  position: fixed;
-  margin-left: 32px;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
 .shui-logo {
   width: 150px;
   height: 120px;
@@ -66,20 +60,27 @@ export default {
 form {
   display: grid;
   width: 300px;
-  margin-left: 25px;
+  margin-left: 35px;
 
   input {
     margin: 10px;
     height: 50px;
     text-align: center;
     color: #fff;
-    letter-spacing: 0.5rem;
-    font-size: 14px;
-    border-radius: 3px;
-    border: 1px solid #fff;
+    border-radius: 4px;
+    border: 2px solid #fff;
+    font-family: PT Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 31px;
+    letter-spacing: 0.1em;
+    text-align: center;
 
     &::placeholder {
       color: white;
+      font-family: "PT Sans", sans-serif;
+      letter-spacing: 0.3em;
     }
   }
 
@@ -88,10 +89,24 @@ form {
     margin: 20px;
     outline: none;
     background: #fff;
-    color: black;
-    font-weight: bold;
-    font-size: 14px;
+    border: 2px solid #fff;
     border-radius: 4px;
+    font-family: PT Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+
+  a {
+    color: #fff;
+    display: block;
+    text-align: center;
+    font-family: "PT Sans", sans-serif;
+    text-decoration: none;
+    font-size: 18px;
   }
 }
 </style>
