@@ -9,7 +9,7 @@
         </li>
       </ul>
     </div>
-    <button>Add Streams</button>
+    <router-link to="/settings">Add streams</router-link>
   </div>
 </template>
 
@@ -18,6 +18,10 @@ import axios from "axios";
 export default {
   name: "Flow",
   async created() {
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${sessionStorage.getItem("auth")}`;
+
     const res = await axios.get("http://localhost:5000/api/flow");
     this.streams = res.data;
     console.log(res.data);
@@ -34,7 +38,8 @@ export default {
 .flow {
   color: white;
 }
-button {
+a {
+  display: inline-block;
   width: 347px;
   height: 50px;
   margin: 20px;
@@ -49,5 +54,6 @@ button {
   line-height: 31px;
   letter-spacing: 0em;
   text-align: center;
+  text-decoration: none;
 }
 </style>
