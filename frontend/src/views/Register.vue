@@ -47,7 +47,7 @@ export default {
 form {
   display: grid;
   width: 300px;
-  margin-left: 25px;
+  margin-left: 35px;
 
   input {
     margin: 10px;
@@ -88,12 +88,14 @@ form {
   }
 
   a {
-    color: #fff;
+    color: #ef4343;
     display: block;
     text-align: center;
     font-family: "PT Sans", sans-serif;
     text-decoration: none;
     font-size: 18px;
+    letter-spacing: 0.1em;
+    font-weight: bold;
   }
 }
 .waterbottom {

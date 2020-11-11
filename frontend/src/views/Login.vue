@@ -6,7 +6,7 @@
       <input type="text" placeholder="Användarnamn" v-model="cert.username" />
       <input type="password" placeholder="Lösenord" v-model="cert.password" />
       <button>Logga in</button>
-      <router-link to="/register">Logga in</router-link>
+      <router-link to="/register">Registrera dig.</router-link>
     </form>
   </div>
 </template>
@@ -101,12 +101,14 @@ form {
   }
 
   a {
-    color: #fff;
+    color: #ef4343;
     display: block;
     text-align: center;
     font-family: "PT Sans", sans-serif;
     text-decoration: none;
     font-size: 18px;
+    letter-spacing: 0.1em;
+    font-weight: bold;
   }
 }
 </style>
