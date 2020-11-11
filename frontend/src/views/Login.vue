@@ -101,7 +101,7 @@ form {
   }
 
   a {
-    color: #ef4343;
+    color: #00b2ff;
     display: block;
     text-align: center;
     font-family: "PT Sans", sans-serif;
