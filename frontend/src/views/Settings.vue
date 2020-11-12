@@ -1,33 +1,24 @@
 <template>
   <div class="flow">
-    <div class="list">
-      <ul>
-        <li class="list-item" v-for="stream in streams" :key="stream._id">
-          <p>{{ stream.date }}</p>
-          <p>{{ stream.content }}</p>
-          <p>{{ stream.tags }}</p>
-        </li>
-      </ul>
-    </div>
     <div class="popup">
+      <div class="close-popup-btn" @click="$router.go(-1)">&times;</div>
       <h2>streams</h2>
       <ul class="tags">
-        <li>
-          <span>#urgent</span
-          ><button><img src="../assets/icons/Vector.svg" alt="" /></button>
-        </li>
-        <li>
-          <span>#boras</span
-          ><button><img src="../assets/icons/Vector.svg" alt="" /></button>
-        </li>
-        <li>
-          <span>#gothenburg</span
-          ><button><img src="../assets/icons/Vector.svg" alt="" /></button>
+        <li v-for="stream in streams" :key="stream._id">
+          <span @click="addStream(stream)">{{ stream.tags }}</span>
+          <button @click="removeTag(stream)">
+            <img src="../assets/icons/Vector.svg" alt="cross-vector" />
+          </button>
         </li>
       </ul>
 
-      <div><input type="text" /> <button>checkicon</button></div>
-      <button class="remove">remove user</button>
+      <div>
+        <input type="text" placeholder="randomtext" />
+        <button class="check">
+          <img src="../assets/icons/checkmark.svg" alt="checkmark" />
+        </button>
+      </div>
+      <button class="remove" @click="removeUser">Remove current user</button>
     </div>
   </div>
 </template>
@@ -51,6 +42,26 @@ export default {
       streams: [],
     };
   },
+  methods: {
+    addStream(stream) {
+      return axios.post("/api/tags", stream).then(() => {
+        this.$router.go(-1);
+      });
+    },
+
+    removeUser() {
+      return axios
+        .delete("/api/user", {
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        .then(() => {
+          sessionStorage.removeItem("auth");
+          this.$router.push({ name: "Login" });
+        });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -63,13 +74,14 @@ export default {
 
   li {
     display: flex;
+    padding: 10px;
     align-items: center;
   }
   span {
-    width: 131px;
+    // width: 131px;
     height: 32px;
-    left: 32px;
-    top: 135px;
+    // left: 32px;
+    // top: 135px;
     color: white;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
@@ -98,6 +110,13 @@ export default {
   min-height: 75vh;
   padding-bottom: 30px;
 
+  .close-popup-btn {
+    top: 0;
+    right: 1rem;
+    font-size: 4rem;
+    position: fixed;
+  }
+
   .remove {
     margin-top: auto;
     width: 347px;
@@ -108,6 +127,45 @@ export default {
     border-radius: 4px;
     color: white;
     width: 100%;
+    font-size: 24px;
+    font-family: "PT Sans";
+    border: none;
+  }
+
+  input {
+    width: 347px;
+    height: 72px;
+    left: 32px;
+    top: 399px;
+    background: transparent;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #fff;
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 150%;
+    text-align: center;
+    &::placeholder {
+      color: #fff;
+      font-family: "PT Sans";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 150%;
+      text-align: center;
+    }
+
+    .check {
+      width: 72px;
+      height: 72px;
+      background: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      box-sizing: border-box;
+      border-radius: 0px 4px 4px 0px;
+    }
   }
 }
 </style>

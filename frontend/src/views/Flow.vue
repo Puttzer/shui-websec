@@ -1,8 +1,9 @@
 <template>
   <div class="flow">
+    <h1>Inga kanaler</h1>
     <div class="list">
       <ul>
-        <li class="list-item" v-for="stream in streams" :key="stream._id">
+        <li class="list-item" v-for="stream in pickedTags" :key="stream._id">
           <p>{{ stream.date }}</p>
           <p>{{ stream.content }}</p>
           <p>{{ stream.tags }}</p>
@@ -21,15 +22,14 @@ export default {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${sessionStorage.getItem("auth")}`;
-
-    const res = await axios.get("http://localhost:5000/api/flow");
-    this.streams = res.data;
-    console.log(res.data);
+    const response = await axios.get("/api/tags");
+    this.pickedTags = response.data;
   },
   data() {
     return {
       userID: null,
       streams: [],
+      pickedTags: [],
     };
   },
 };
@@ -55,5 +55,14 @@ a {
   letter-spacing: 0em;
   text-align: center;
   text-decoration: none;
+}
+
+.list {
+  .list-item {
+    color: #000;
+    padding: 10px;
+    margin: 1rem 0;
+    background: #fff;
+  }
 }
 </style>

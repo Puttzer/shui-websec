@@ -76,11 +76,13 @@ form {
     line-height: 31px;
     letter-spacing: 0.1em;
     text-align: center;
+    background: transparent;
 
     &::placeholder {
       color: white;
       font-family: "PT Sans", sans-serif;
       letter-spacing: 0.3em;
+      background: transparent;
     }
   }
 

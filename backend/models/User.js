@@ -49,5 +49,9 @@ module.exports = {
 				return false;
 			}
 		};
+	},
+
+	async deleteUser(userID) {
+		return await dbUsers.remove({ _id: userID })
 	}
 }

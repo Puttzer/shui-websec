@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const User = require('./models/User.js');
 const Flow = require('./models/Flow.js');
+const Tags = require('./models/Tags')
 const { verify } = require('./verify')
 
 app.use(cors());
@@ -96,6 +97,35 @@ app.get('/api/flow', verify, async (request, response) => {
 	} else {
 		response.status(401).json({ error: 'Couldnt get resources' })
 	}
+})
+
+app.post('/api/tags', verify, async (req, res) => {
+	// console.log(req.body)
+	const tags = await Tags.insertedTags(req.body, req.user.userID)
+	if (tags) {
+		res.json({ message: 'Banan' })
+		return
+	}
+	res.status(401).json({ error: 'Couldnt get resources' })
+})
+
+app.get('/api/tags', verify, async (req, res) => {
+	const tags = await Tags.getAllTags(req.user.userID)
+	if (tags) {
+		res.json(tags)
+		return
+	}
+	res.status(401).json({ error: 'Couldnt get resources' })
+})
+
+app.delete('/api/user', verify, async (req, res) => {
+	// console.log(req.body)
+	const tags = await User.deleteUser(req.user.userID)
+	if (tags) {
+		res.json({ message: 'User Removed' })
+		return
+	}
+	res.status(401).json({ error: 'Couldnt get resources' })
 })
 
 
